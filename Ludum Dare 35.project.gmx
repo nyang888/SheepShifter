@@ -14,7 +14,9 @@
       <sprite>sprites\S_Sheep_Idle_R</sprite>
     </sprites>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\B_Background</background>
+  </backgrounds>
   <paths name="paths"/>
   <objects name="objects">
     <object>objects\O_Shepherd</object>
