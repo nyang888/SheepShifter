@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>/// INIT VARIABLES
 
-maxTime = 120;
+maxTime = 60;
 timer = 0;
 </string>
           </argument>

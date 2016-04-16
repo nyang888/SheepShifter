@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>/// INIT VARIABLES
 
-hp = 5;
+hp = 1;
 xSpeed = -5;
 </string>
           </argument>

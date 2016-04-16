@@ -26,11 +26,21 @@
           <argument>
             <kind>1</kind>
             <string>/// INIT VARIABLES
-
+randomize();
 image_speed = .25;
 
-destX = O_Shepherd.x - (O_Shepherd.numSheep * (sprite_width)) - (O_Shepherd.sprite_width/2);
-destY = O_Shepherd.y;
+destY = irandom_range(0,480-sprite_height);
+
+if((destY - O_Shepherd.y) &gt; sprite_height) {
+    destX_range = O_Shepherd.x - (destY - O_Shepherd.y);
+} else if ((destY - O_Shepherd.y) &lt; -sprite_height){
+    destX_range = O_Shepherd.x - (O_Shepherd.y - destY);
+} else {
+    destX_range = O_Shepherd.x - sprite_width;
+}
+
+destX = irandom_range(0,destX_range);
+
 
 left = 1;
 right = 2;

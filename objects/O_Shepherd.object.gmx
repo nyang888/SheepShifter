@@ -28,6 +28,7 @@
             <string>/// INIT VARIABLES
 
 numSheep = 0;
+randomize();
 </string>
           </argument>
         </arguments>
