@@ -6,10 +6,9 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
-    <sprite>sprites\S_Shepherd</sprite>
     <sprite>sprites\S_Human</sprite>
+    <sprite>sprites\S_Shepherd</sprite>
     <sprites name="Sheep">
-      <sprite>sprites\S_Sheep</sprite>
       <sprite>sprites\S_Sheep_Idle_L</sprite>
       <sprite>sprites\S_Sheep_Idle_R</sprite>
     </sprites>
@@ -19,11 +18,11 @@
   </backgrounds>
   <paths name="paths"/>
   <objects name="objects">
-    <object>objects\O_Shepherd</object>
     <object>objects\O_Human</object>
     <object>objects\O_Screen</object>
-    <object>objects\O_Sheep</object>
     <object>objects\O_Shake_Small</object>
+    <object>objects\O_Sheep</object>
+    <object>objects\O_Shepherd</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\R_Room</room>

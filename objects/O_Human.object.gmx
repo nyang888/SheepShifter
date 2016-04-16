@@ -27,8 +27,15 @@
             <kind>1</kind>
             <string>/// INIT VARIABLES
 
-hp = 1;
+image_speed = .25
+
+hp = 3;
 xSpeed = -5;
+ySpeed = 0;
+
+yChange_range = 5;
+yChange_timer_max = 15;
+yChange_timer = 0;
 </string>
           </argument>
         </arguments>
@@ -53,7 +60,21 @@ xSpeed = -5;
             <kind>1</kind>
             <string>/// MOVEMENT
 
+if(yChange_timer == yChange_timer_max){
+    ySpeed = random_range(-yChange_range,yChange_range);
+    yChange_timer = 0;
+} else {
+    yChange_timer++;
+}
 x = x + xSpeed;
+
+if((ySpeed + y) &lt; 0) {
+    y = 0;
+} else if ((ySpeed + y) &gt; (480 - sprite_width)) {
+    y = 480 - sprite_width;
+} else {
+    y = y + ySpeed;
+}
 </string>
           </argument>
         </arguments>
