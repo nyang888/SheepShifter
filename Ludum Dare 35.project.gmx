@@ -15,6 +15,7 @@
     <sprites name="Human">
       <sprite>sprites\S_Human</sprite>
       <sprite>sprites\S_Human_Hurt</sprite>
+      <sprite>sprites\S_Human_Poof</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -28,6 +29,7 @@
     <object>objects\O_Sheep</object>
     <object>objects\O_Shepherd</object>
     <object>objects\O_Beam</object>
+    <object>objects\O_Human_Poof</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\R_Room</room>

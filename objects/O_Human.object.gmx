@@ -174,8 +174,7 @@ hp--;
             <string>/// DEATH
 
 if (hp == 0) {
-    O_Shepherd.numSheep += 1;
-    instance_create(x,y,O_Sheep);
+    instance_create(x,y,O_Human_Poof);
     instance_destroy();
 }
 </string>
