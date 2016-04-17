@@ -31,7 +31,8 @@ image_speed = .25
 depth = 480 - (y + sprite_height);
 
 numSheep = irandom_range(0,50);
-hp = 20;
+hp = 15;
+maxHp = hp;
 randomize();
 
 xSpeed_orig = -5;
@@ -59,6 +60,8 @@ idle = 2;
 dead = 3;
 hurt = 4;
 phase = idle;
+
+O_Shepherd.enemyShepHp = hp;
 </string>
           </argument>
         </arguments>
@@ -171,6 +174,8 @@ if (phase == hurt) {
         phase = idle;
         O_Shepherd.phase = O_Shepherd.idle;
     }
+    
+    ySpeed = ySpeed;
 }
 </string>
           </argument>
@@ -194,28 +199,30 @@ if (phase == hurt) {
             <kind>1</kind>
             <string>/// ATTACK PLAYER
 
-if (instance_exists(O_Shepherd)){
-    attack_timer++;
-    
-    if(attack_timer == attack_timer_max) {
-        attack = 1;
-        attack_anim_timer = 0;
-        O_Shepherd.hp--;
-audio_play_sound(M_Ahh,2,false);
-        audio_play_sound(M_Beam,1,false);
-        instance_create(x,y,O_Shake_Small);     
-    }
-
-    if (attack == 1) {
-        if(sprite_index == S_Shepherd_Enemy) {
-            sprite_index = S_Shepherd_Enemy_Attack;
+    if ( x &gt; 0 ){
+    if (instance_exists(O_Shepherd)){
+        attack_timer++;
+        
+        if(attack_timer == attack_timer_max) {
+            attack = 1;
+            attack_anim_timer = 0;
+            O_Shepherd.hp--;
+            audio_play_sound(M_Ahh,2,false);
+            audio_play_sound(M_Beam,1,false);
+            instance_create(x,y,O_Shake_Small);     
         }
-        
-        attack_anim_timer++;
-        
-        if(attack_anim_timer == attack_anim_timer_max) {
-            attack = 0;
-            attack_timer = 0;
+    
+        if (attack == 1) {
+            if(sprite_index == S_Shepherd_Enemy) {
+                sprite_index = S_Shepherd_Enemy_Attack;
+            }
+            
+            attack_anim_timer++;
+            
+            if(attack_anim_timer == attack_anim_timer_max) {
+                attack = 0;
+                attack_timer = 0;
+            }
         }
     }
 }
@@ -241,7 +248,7 @@ audio_play_sound(M_Ahh,2,false);
             <kind>1</kind>
             <string>/// KILL IF OFFSCREEN
 
-if ((x + sprite_width) &lt; 0) {
+if ((x + sprite_width + 100) &lt; 0) {
     instance_destroy();
 }
 </string>
@@ -278,6 +285,8 @@ hurt_timer = 0;
 
 O_Shepherd.phase = O_Shepherd.attack;
 
+O_Shepherd.enemyShepHp--;
+
 hp--;
 </string>
           </argument>
@@ -305,7 +314,7 @@ if (hp == 0) {
     instance_create(x,y,O_Human_Poof);
     instance_create(x,y,O_Shake_Big);
     O_Shepherd.phase = O_Shepherd.idle;
-    O_Shepherd.numSheep = numSheep;
+    O_Shepherd.numSheep += numSheep;
     instance_destroy();
 }
 </string>
@@ -347,6 +356,40 @@ if(attack == 1) {
     depth = 480 - (y + sprite_height);
 }
 draw_self();
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// HEALTH BAR
+
+var width=10;
+var maxLength = 2*sprite_width/3;
+
+draw_set_color(c_black);
+draw_rectangle(x+(sprite_width/2)-(maxLength/2)-2,y-width-2,
+                x+(sprite_width/2)+(maxLength/2)+2,y+2,false);
+
+draw_set_color(c_red);
+draw_rectangle(x+(sprite_width/2)-(maxLength/2),y-width,
+                x+(sprite_width/2)-(maxLength/2)+((hp/maxHp)*maxLength),y,false);
+
+draw_set_color(c_black);
 </string>
           </argument>
         </arguments>

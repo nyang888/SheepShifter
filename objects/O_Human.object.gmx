@@ -31,7 +31,8 @@ image_speed = .25;
 
 depth = 480 - (y + sprite_height);
 
-hp = 10;
+hp = 5;
+maxHp = hp;
 xSpeed_orig = -5;
 xSpeed = xSpeed_orig;
 ySpeed = 0;
@@ -112,6 +113,7 @@ if (phase == hurt) {
     
     if(hurt_timer == hurt_timer_max) {
         phase = idle;
+        O_Shepherd.phase = O_Shepherd.idle;
     }
 }
 </string>
@@ -253,6 +255,40 @@ if(phase == hurt) {
     depth = 480 - (y + sprite_height);
 }
 draw_self();
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// HEALTH BAR
+
+var width=7;
+var maxLength = 2*sprite_width/3;
+
+draw_set_color(c_black);
+draw_rectangle(x+(sprite_width/2)-(maxLength/2)-2,y-width-2,
+                x+(sprite_width/2)+(maxLength/2)+2,y+2,false);
+
+draw_set_color(c_red);
+draw_rectangle(x+(sprite_width/2)-(maxLength/2),y-width,
+                x+(sprite_width/2)-(maxLength/2)+((hp/maxHp)*maxLength),y,false);
+
+draw_set_color(c_black);
 </string>
           </argument>
         </arguments>

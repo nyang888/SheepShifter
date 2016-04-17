@@ -34,7 +34,7 @@ depth = 480 - (y + sprite_height);
 bah_timer = 0;
 bah_timer_max = irandom_range(50,200);
 
-destY = irandom_range(0,480-sprite_height);
+destY = irandom_range(50,430-sprite_height);
 
 if((destY - (O_Shepherd.y+(O_Shepherd.sprite_width/2))) &gt; sprite_height) {
     destX_range = O_Shepherd.x - (destY - O_Shepherd.y);

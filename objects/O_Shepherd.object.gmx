@@ -32,12 +32,15 @@ image_speed = .25
 depth = 480 - (y + sprite_height);
 
 numSheep = 0;
-hp = 50;
+maxHp = 25;
+hp = maxHp;
 randomize();
 
 attack = 1;
 idle = 2;
 phase = idle;
+
+enemyShepHp = 100;
 </string>
           </argument>
         </arguments>
@@ -71,6 +74,8 @@ if (phase == idle) {
         sprite_index = S_Shepherd_Attack;
     }
 }
+
+O_Score_Counter.numSheep = numSheep;
 </string>
           </argument>
         </arguments>
@@ -113,6 +118,94 @@ if(instance_exists(O_Enemy_Shepherd)) {
     } else if (sprite_index == S_Shepherd_Attack_Hurt) {
         sprite_index = S_Shepherd_Attack;
     }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// DEATH
+
+if(hp == 0) {
+    instance_create(x,y,O_Shepherd_Poof);
+    hp--;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// SCORE COUNTER
+draw_self();
+draw_set_font(CourierNew)
+draw_text(10,10,"You have "+string(numSheep)+" Sheep!");
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// HEALTH BAR
+
+if (hp &gt;= 0) {
+var width=7;
+var maxLength = 2*sprite_width/3;
+
+draw_set_color(c_black);
+draw_rectangle(x+(sprite_width/2)-(maxLength/2)-2,y-width-2,
+                x+(sprite_width/2)+(maxLength/2)+2,y+2,false);
+
+draw_set_color(c_green);
+draw_rectangle(x+(sprite_width/2)-(maxLength/2),y-width,
+                x+(sprite_width/2)-(maxLength/2)+((hp/maxHp)*maxLength),y,false);
+
+draw_set_color(c_black);
 }
 </string>
           </argument>
