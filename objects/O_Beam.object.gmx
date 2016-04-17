@@ -27,8 +27,8 @@
             <kind>1</kind>
             <string>/// INITIALIZE VARIABLES
 
-destX = O_Shepherd.x;
-destY = O_Shepherd.y;
+destX = O_Shepherd.x + 112;
+destY = O_Shepherd.y + 68;
 
 angle = arctan((y-destY)/(x-destX));
 

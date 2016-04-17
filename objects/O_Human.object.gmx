@@ -29,7 +29,9 @@
 
 image_speed = .25;
 
-hp = 3;
+depth = 480 - (y + sprite_height);
+
+hp = 10;
 xSpeed_orig = -5;
 xSpeed = xSpeed_orig;
 ySpeed = 0;
@@ -78,7 +80,6 @@ if (phase == idle) {
     } else {
         yChange_timer++;
     }
-    x = x + xSpeed;
     
     if((ySpeed + y) &lt; 0) {
         y = 0;
@@ -88,6 +89,10 @@ if (phase == idle) {
         y = y + ySpeed;
     }
 }
+
+x = x + xSpeed;
+depth = 480 - (y + sprite_height);
+
 </string>
           </argument>
         </arguments>
@@ -111,13 +116,14 @@ if (phase == idle) {
             <string>/// GETTING HURT
 
 if (phase == hurt) {
-    xSpeed = 0;
+    xSpeed = -3;
     ySpeed = 0;
     sprite_index = S_Human_Hurt;
     hurt_timer++;
     
     if(hurt_timer == hurt_timer_max) {
         phase = idle;
+        O_Shepherd.phase = O_Shepherd.idle;
     }
 }
 </string>
@@ -145,10 +151,13 @@ if (phase == hurt) {
             <string>/// HURT
 
 instance_create(x,y,O_Shake_Small);
-instance_create(x+(sprite_width/2),y+(sprite_height/2),O_Beam);
+
+audio_play_sound(M_Beam,1,false);
 
 phase = hurt;
 hurt_timer = 0;
+
+O_Shepherd.phase = O_Shepherd.attack;
 
 hp--;
 </string>
@@ -175,8 +184,40 @@ hp--;
 
 if (hp == 0) {
     instance_create(x,y,O_Human_Poof);
+    O_Shepherd.phase = O_Shepherd.idle;
     instance_destroy();
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// DRAW BEAM
+if(phase == hurt) {
+    depth = 1000;
+    draw_line_width_color(x+(sprite_width/2),y+(sprite_height/2),
+                            O_Shepherd.x + 110, O_Shepherd.y + 66,
+                            5,c_white,c_white);
+    depth = 480 - (y + sprite_height);
+}
+draw_self();
 </string>
           </argument>
         </arguments>

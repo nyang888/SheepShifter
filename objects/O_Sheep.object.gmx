@@ -29,11 +29,13 @@
 randomize();
 image_speed = .25;
 
+depth = 480 - (y + sprite_height);
+
 destY = irandom_range(0,480-sprite_height);
 
-if((destY - O_Shepherd.y) &gt; sprite_height) {
+if((destY - (O_Shepherd.y+(O_Shepherd.sprite_width/2))) &gt; sprite_height) {
     destX_range = O_Shepherd.x - (destY - O_Shepherd.y);
-} else if ((destY - O_Shepherd.y) &lt; -sprite_height){
+} else if ((destY - (O_Shepherd.y+(O_Shepherd.sprite_width/2))) &lt; -sprite_height){
     destX_range = O_Shepherd.x - (O_Shepherd.y - destY);
 } else {
     destX_range = O_Shepherd.x - sprite_width;
@@ -96,6 +98,9 @@ if (abs(destX-x) &gt; 5) {
 if (abs(destY-y) &gt; 5) {
     y += ySpeed;
 }
+
+depth = 480 - (y + sprite_height);
+
 </string>
           </argument>
         </arguments>

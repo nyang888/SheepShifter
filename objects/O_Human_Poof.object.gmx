@@ -28,6 +28,8 @@
             <string>/// SET ANIMATION SPEED
 
 image_speed = .25
+
+audio_play_sound(M_Explode,1,false);
 </string>
           </argument>
         </arguments>
