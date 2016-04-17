@@ -34,6 +34,7 @@
       <sprite>sprites\S_Shepherd_Enemy_Hurt</sprite>
       <sprite>sprites\S_Shepherd_Enemy_Attack_Hurt</sprite>
     </sprites>
+    <sprite>sprites\S_Title</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\B_Background</background>
@@ -57,6 +58,8 @@
     </objects>
     <objects name="Title Screen">
       <object>objects\O_Title_Control</object>
+      <object>objects\O_Title_Sheep</object>
+      <object>objects\O_Title</object>
     </objects>
     <objects name="Game Over Screen">
       <object>objects\O_Game_Over_Control</object>
@@ -64,7 +67,9 @@
     <object>objects\O_Score_Counter</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\R_Title</room>
     <room>rooms\R_Main</room>
+    <room>rooms\R_Instructions</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
