@@ -29,6 +29,9 @@
 
 currSheep = 0;
 
+bah_timer = 0;
+bah_timer_max = irandom_range(50,200);
+
 if (instance_exists(O_Shepherd.numSheep)) {
     currSheep = O_Shepherd.numSheep;
 }
@@ -38,6 +41,35 @@ if (instance_exists(O_Shepherd.numSheep)) {
       </action>
     </event>
     <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// BAAAAHHH CONTROL
+
+bah_timer++;
+
+if(bah_timer == bah_timer_max) {
+    bah_timer = 0;
+    bah_timer_max = irandom_range(50,200);
+    audio_play_sound(M_Baahh,1,false);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
       <action>
         <libid>1</libid>
         <id>603</id>

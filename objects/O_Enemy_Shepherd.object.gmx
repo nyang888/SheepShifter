@@ -87,7 +87,7 @@ for (i = 1; i &lt;= numSheep; i++) {
     yLocation = random_range((y+sprite_height/2)-50,(y+sprite_height/2)+50);
     xLocation = random_range((x+sprite_width),(x+sprite_width)+100);
     
-    instance_create(xLocation, yLocation, O_Enemy_Sheep);
+    instance_create(xLocation, yLocation - 32, O_Enemy_Sheep);
 }
 </string>
           </argument>
@@ -198,6 +198,7 @@ if (instance_exists(O_Shepherd)){
         attack = 1;
         attack_anim_timer = 0;
         O_Shepherd.hp--;
+audio_play_sound(M_Ahh,2,false);
         audio_play_sound(M_Beam,1,false);
         instance_create(x,y,O_Shake_Small);     
     }
@@ -266,6 +267,7 @@ if ((x + sprite_width) &lt; 0) {
 
 instance_create(x,y,O_Shake_Small);
 
+audio_play_sound(M_Ahh,2,false);
 audio_play_sound(M_Beam,1,false);
 
 phase = hurt;
