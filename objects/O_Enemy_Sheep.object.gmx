@@ -8,6 +8,35 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// INIT VARIABLES
+
+currSheep = 0;
+
+if (instance_exists(O_Shepherd.numSheep)) {
+    currSheep = O_Shepherd.numSheep;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -30,8 +59,18 @@
 if(instance_exists(O_Enemy_Shepherd)){
     x = x + O_Enemy_Shepherd.xSpeed;
     y = y + O_Enemy_Shepherd.ySpeed;
-} else {
-    instance_create(x,y,O_Sheep);
+} else if (instance_exists(O_Shepherd)){
+    if (currSheep &lt; O_Shepherd.numSheep) {
+        instance_create(x,y,O_Sheep);
+        instance_destroy();
+    }
+} 
+
+if (!instance_exists(O_Enemy_Shepherd)) {
+    x = x - 3;
+}
+
+if ((x + sprite_width) &lt; 0) {
     instance_destroy();
 }
 </string>

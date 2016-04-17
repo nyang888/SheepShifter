@@ -30,10 +30,7 @@
 maxTime = 60;
 timer = 0;
 
-
-tempX = 640;
-    tempY = irandom_range(40,440);
-    instance_create(tempX,tempY,O_Enemy_Shepherd);
+isMade = 0;
 </string>
           </argument>
         </arguments>
@@ -68,6 +65,13 @@ if (timer == maxTime) {
     timer = 0;
 } else {
     timer++;
+}
+
+if(isMade == 0) {
+    isMade++;
+    tempX = 640;
+    tempY = irandom_range(40,440);
+    instance_create(tempX,tempY,O_Enemy_Shepherd);
 }
 </string>
           </argument>

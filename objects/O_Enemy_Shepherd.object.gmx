@@ -44,10 +44,17 @@ yChange_timer = 0;
 
 hurt_timer_max = 15;
 hurt_timer = 0;xSpeed_orig = -5;
+
+attack_anim_timer_max = 15;
+attack_anim_timer = 0;
+attack_timer_max = irandom_range(15,100);
+attack_timer = 0;
+
 xSpeed = xSpeed_orig;
 ySpeed = 0;
 
-attack = 1;
+attack = 0;
+
 idle = 2;
 dead = 3;
 hurt = 4;
@@ -166,6 +173,77 @@ if (phase == hurt) {
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// ATTACK PLAYER
+
+if (instance_exists(O_Shepherd)){
+    attack_timer++;
+    
+    if(attack_timer == attack_timer_max) {
+        attack = 1;
+        attack_anim_timer = 0;
+        O_Shepherd.hp--;
+        audio_play_sound(M_Beam,1,false);
+        instance_create(x,y,O_Shake_Small);     
+    }
+
+    if (attack == 1) {
+        if(sprite_index == S_Shepherd_Enemy) {
+            sprite_index = S_Shepherd_Enemy_Attack;
+        }
+        
+        attack_anim_timer++;
+        
+        if(attack_anim_timer == attack_anim_timer_max) {
+            attack = 0;
+            attack_timer = 0;
+        }
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// KILL IF OFFSCREEN
+
+if ((x + sprite_width) &lt; 0) {
+    instance_destroy();
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="6" enumb="4">
       <action>
@@ -251,6 +329,14 @@ if(phase == hurt) {
     depth = 1000;
     draw_line_width_color(x+(sprite_width/2),y+(sprite_height/2),
                             O_Shepherd.x + 110, O_Shepherd.y + 66,
+                            5,c_white,c_white);
+    depth = 480 - (y + sprite_height);
+}
+if(attack == 1) {
+    depth = 1000;
+    draw_line_width_color(x+15,y+67,
+                            O_Shepherd.x + O_Shepherd.sprite_width/2, 
+                            O_Shepherd.y + O_Shepherd.sprite_height/2,
                             5,c_white,c_white);
     depth = 480 - (y + sprite_height);
 }
