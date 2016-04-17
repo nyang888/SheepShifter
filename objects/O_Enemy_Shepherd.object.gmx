@@ -158,10 +158,13 @@ depth = 480 - (y + sprite_height);
             <kind>1</kind>
             <string>/// GETTING HURT
 
-if (phase == hurt) {
-    xSpeed = -3;
-    ySpeed = 0;
-    //sprite_index = S_Human_Hurt;
+if (phase == hurt) {    
+    if (sprite_index == S_Shepherd_Enemy) {
+        sprite_index = S_Shepherd_Enemy_Hurt;
+    } else if (sprite_index == S_Shepherd_Enemy_Attack) {
+        sprite_index = S_Shepherd_Enemy_Attack_Hurt;
+    }
+    
     hurt_timer++;
     
     if(hurt_timer == hurt_timer_max) {
@@ -339,7 +342,7 @@ if(attack == 1) {
     draw_line_width_color(x+15,y+67,
                             O_Shepherd.x + O_Shepherd.sprite_width/2, 
                             O_Shepherd.y + O_Shepherd.sprite_height/2,
-                            5,c_white,c_white);
+                            5,c_red,c_red);
     depth = 480 - (y + sprite_height);
 }
 draw_self();

@@ -23,10 +23,14 @@
     <sprites name="Shepherd">
       <sprite>sprites\S_Shepherd</sprite>
       <sprite>sprites\S_Shepherd_Attack</sprite>
+      <sprite>sprites\S_Shepherd_Hurt</sprite>
+      <sprite>sprites\S_Shepherd_Attack_Hurt</sprite>
     </sprites>
     <sprites name="Enemy Shepherd">
       <sprite>sprites\S_Shepherd_Enemy</sprite>
       <sprite>sprites\S_Shepherd_Enemy_Attack</sprite>
+      <sprite>sprites\S_Shepherd_Enemy_Hurt</sprite>
+      <sprite>sprites\S_Shepherd_Enemy_Attack_Hurt</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
