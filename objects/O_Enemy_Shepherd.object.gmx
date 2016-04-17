@@ -37,14 +37,10 @@ randomize();
 
 xSpeed_orig = -5;
 xSpeed = xSpeed_orig;
-ySpeed = 0;
-
-yChange_range = 5;
-yChange_timer_max = 15;
-yChange_timer = 0;
 
 hurt_timer_max = 15;
-hurt_timer = 0;xSpeed_orig = -5;
+hurt_timer = 0;
+xSpeed_orig = -5;
 
 attack_anim_timer_max = 15;
 attack_anim_timer = 0;
@@ -120,20 +116,6 @@ if (phase == idle) {
     xSpeed = xSpeed_orig;
     sprite_index = S_Shepherd_Enemy;
     
-    if(yChange_timer == yChange_timer_max){
-        ySpeed = random_range(-yChange_range,yChange_range);
-        yChange_timer = 0;
-    } else {
-        yChange_timer++;
-    }
-    
-    if((ySpeed + y) &lt; 0) {
-        y = 0;
-    } else if ((ySpeed + y) &gt; (480 - sprite_height)) {
-        y = 480 - sprite_height;
-    } else {
-        y = y + ySpeed;
-    }
 }
 
 x = x + xSpeed;

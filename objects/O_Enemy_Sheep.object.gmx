@@ -86,10 +86,8 @@ if(bah_timer == bah_timer_max) {
 
 if (!instance_exists(O_Enemy_Shepherd)) {
     x = x - 3;
-    y = y;
 } else if(instance_exists(O_Enemy_Shepherd)){
     x = x + O_Enemy_Shepherd.xSpeed;
-    y = y + O_Enemy_Shepherd.ySpeed;
 } 
 
 if (instance_exists(O_Shepherd)){

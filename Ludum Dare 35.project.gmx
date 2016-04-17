@@ -9,6 +9,7 @@
     <sound>sound\M_Explode</sound>
     <sound>sound\M_Ahh</sound>
     <sound>sound\M_Baahh</sound>
+    <sound>sound\M_Background</sound>
   </sounds>
   <sprites name="sprites">
     <sprites name="Sheep">

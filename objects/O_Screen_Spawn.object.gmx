@@ -32,6 +32,8 @@ timer = 0;
 
 maxTime_Shepherd = 480;
 time_shepherd = 0;
+
+audio_play_sound(M_Background,1,true);
 </string>
           </argument>
         </arguments>
