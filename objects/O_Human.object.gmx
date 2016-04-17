@@ -218,6 +218,7 @@ hp--;
 
 if (hp == 0) {
     instance_create(x,y,O_Human_Poof);
+    instance_create(x,y,O_Shake_Big);
     O_Shepherd.phase = O_Shepherd.idle;
     instance_destroy();
 }
