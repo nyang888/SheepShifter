@@ -27,14 +27,10 @@
             <kind>1</kind>
             <string>/// INIT VARIABLES
 
-currSheep = 0;
-
 bah_timer = 0;
 bah_timer_max = irandom_range(50,200);
 
-if (instance_exists(O_Shepherd.numSheep)) {
-    currSheep = O_Shepherd.numSheep;
-}
+currSheep = global.numSheep;
 </string>
           </argument>
         </arguments>

@@ -31,14 +31,17 @@ image_speed = .25
 
 depth = 480 - (y + sprite_height);
 
-numSheep = 0;
-maxHp = 25;
+sheepCount = 0;
+maxHp = 20;
 hp = maxHp;
 randomize();
 
 attack = 1;
 idle = 2;
 phase = idle;
+
+timerDeathMax = 60;
+timerDeath = 0;
 
 enemyShepHp = 100;
 </string>
@@ -75,7 +78,7 @@ if (phase == idle) {
     }
 }
 
-O_Score_Counter.numSheep = numSheep;
+global.numSheep = sheepCount;
 </string>
           </argument>
         </arguments>
@@ -145,6 +148,14 @@ if(hp == 0) {
     instance_create(x,y,O_Shepherd_Poof);
     hp--;
 }
+
+if(hp &lt;= 0) {
+    timerDeath++;
+    
+    if(timerDeath == timerDeathMax) {
+        room_goto_next();   
+    }    
+}
 </string>
           </argument>
         </arguments>
@@ -170,7 +181,7 @@ if(hp == 0) {
             <string>/// SCORE COUNTER
 draw_self();
 draw_set_font(CourierNew)
-draw_text(10,10,"You have "+string(numSheep)+" Sheep!");
+draw_text(10,10,"You have "+string(global.numSheep)+" Sheep!");
 </string>
           </argument>
         </arguments>

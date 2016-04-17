@@ -34,7 +34,10 @@
       <sprite>sprites\S_Shepherd_Enemy_Hurt</sprite>
       <sprite>sprites\S_Shepherd_Enemy_Attack_Hurt</sprite>
     </sprites>
-    <sprite>sprites\S_Title</sprite>
+    <sprites name="Words">
+      <sprite>sprites\S_Title</sprite>
+      <sprite>sprites\S_Game_Over</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\B_Background</background>
@@ -60,6 +63,9 @@
       <object>objects\O_Title_Control</object>
       <object>objects\O_Title_Sheep</object>
       <object>objects\O_Title</object>
+      <object>objects\O_Instruction_Control</object>
+      <object>objects\O_Title_Human</object>
+      <object>objects\O_Title_Shepherd_Enemy</object>
     </objects>
     <objects name="Game Over Screen">
       <object>objects\O_Game_Over_Control</object>
@@ -68,8 +74,9 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\R_Title</room>
-    <room>rooms\R_Main</room>
     <room>rooms\R_Instructions</room>
+    <room>rooms\R_Main</room>
+    <room>rooms\R_GameOver</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

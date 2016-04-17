@@ -30,7 +30,7 @@ image_speed = .25
 
 depth = 480 - (y + sprite_height);
 
-numSheep = irandom_range(0,50);
+sheep = irandom_range(0,50);
 hp = 15;
 maxHp = hp;
 randomize();
@@ -84,7 +84,7 @@ O_Shepherd.enemyShepHp = hp;
             <kind>1</kind>
             <string>/// CREATE SHEEP
 
-for (i = 1; i &lt;= numSheep; i++) {
+for (i = 1; i &lt;= sheep; i++) {
     randomize();
     
     yLocation = random_range((y+sprite_height/2)-50,(y+sprite_height/2)+50);
@@ -314,7 +314,7 @@ if (hp == 0) {
     instance_create(x,y,O_Human_Poof);
     instance_create(x,y,O_Shake_Big);
     O_Shepherd.phase = O_Shepherd.idle;
-    O_Shepherd.numSheep += numSheep;
+    O_Shepherd.sheepCount += sheep;
     instance_destroy();
 }
 </string>
