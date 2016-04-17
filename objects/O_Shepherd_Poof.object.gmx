@@ -54,9 +54,10 @@ audio_play_sound(M_Explode,1,false);
             <kind>1</kind>
             <string>/// CREATE SHEEP
 
+    O_Shepherd.x = x+(O_Shepherd.sprite_width/2);
+    O_Shepherd.y = y+(O_Shepherd.sprite_width/2);
 O_Shepherd.sprite_index = S_Shepherd_Dead;
-    x = x+(sprite_width/2);
-    y = y+(sprite_width/2);
+
 
 instance_destroy();
 </string>

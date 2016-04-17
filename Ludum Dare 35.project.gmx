@@ -53,6 +53,7 @@
       <object>objects\O_Screen_Spawn</object>
       <object>objects\O_Shake_Small</object>
       <object>objects\O_Shake_Big</object>
+      <object>objects\O_Shake_Giant</object>
       <object>objects\O_Sheep</object>
       <object>objects\O_Shepherd</object>
       <object>objects\O_Human_Poof</object>

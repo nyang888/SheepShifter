@@ -257,19 +257,22 @@ if ((x + sprite_width + 100) &lt; 0) {
             <kind>1</kind>
             <string>/// HURT
 
-instance_create(x,y,O_Shake_Small);
+if (O_Shepherd.hp &gt; 0) {
+    instance_create(x,y,O_Shake_Small);
+    
+    audio_play_sound(M_Ahh,2,false);
+    audio_play_sound(M_Beam,1,false);
+    
+    phase = hurt;
+    hurt_timer = 0;
+    
+    O_Shepherd.phase = O_Shepherd.attack;
+    
+    O_Shepherd.enemyShepHp--;
+    
+    hp--;
 
-audio_play_sound(M_Ahh,2,false);
-audio_play_sound(M_Beam,1,false);
-
-phase = hurt;
-hurt_timer = 0;
-
-O_Shepherd.phase = O_Shepherd.attack;
-
-O_Shepherd.enemyShepHp--;
-
-hp--;
+}
 </string>
           </argument>
         </arguments>

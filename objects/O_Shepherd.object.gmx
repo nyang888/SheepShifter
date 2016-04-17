@@ -32,7 +32,7 @@ image_speed = .25
 depth = 480 - (y + sprite_height);
 
 sheepCount = 0;
-maxHp = 20;
+maxHp = 1;
 hp = maxHp;
 randomize();
 
@@ -40,7 +40,7 @@ attack = 1;
 idle = 2;
 phase = idle;
 
-timerDeathMax = 60;
+timerDeathMax = 120;
 timerDeath = 0;
 
 enemyShepHp = 100;
@@ -146,6 +146,7 @@ if(instance_exists(O_Enemy_Shepherd)) {
 
 if(hp == 0) {
     instance_create(x,y,O_Shepherd_Poof);
+    instance_create(x,y,O_Shake_Giant);
     hp--;
 }
 

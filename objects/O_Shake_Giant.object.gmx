@@ -27,14 +27,14 @@
             <kind>1</kind>
             <string>/// INIT VARIABLES
 
-maxTime = 60;
-timer = 0;
+//sets the amount that the camera moves each frame
+strength=choose(-20,20);
+//sets the length of the shake, must be a multiple of 2
+duration=8;
+//Keeps track of how long the shake has been going on for
+timer=0;
 
-maxTime_Shepherd = 480;
-time_shepherd = 0;
 
-audio_stop_all();
-audio_play_sound(M_Background,1,true);
 </string>
           </argument>
         </arguments>
@@ -57,82 +57,25 @@ audio_play_sound(M_Background,1,true);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// SPAWN TIMER
+            <string>/// SHAKE
 
-if (timer == maxTime) {
-    tempX = 640;
-    tempY = irandom_range(40,380);
-    // Spawn
-    instance_create(tempX,tempY,O_Human);
-    
-    // Reset timer
-    timer = 0;
-} else {
-    timer++;
+timer+=1;
+
+//every 2 frames, the camera moves by strength
+if(timer%4==0)
+{
+    view_xview+=strength;
+    view_yview+=strength;
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// EVIL SHEPHERD SPAWNER
-
-if (time_shepherd == maxTime_Shepherd) {
-    tempX = 640;
-    tempY = irandom_range(40,380);
-    
-    if(!instance_exists(O_Enemy_Shepherd)) {
-        instance_create(tempX,tempY,O_Enemy_Shepherd);
-        
-        // Reset timer
-        maxTime_Shepherd -= irandom_range(20,100);
-        if(maxTime_Shepherd &lt; 60) {
-            maxTime_Shepherd = 60;
-        }
-        time_shepherd = 0;
-    }
-} else {
-    time_shepherd++;
+else if(timer%2==0)
+{
+    view_xview+=strength;
+    view_yview+=strength;
+    strength*=-1;
 }
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// DEATH
-
-if(O_Shepherd.hp == 0){
+if (timer==duration)
+{
     instance_destroy();
 }
 </string>
