@@ -38,6 +38,8 @@
     <object>objects\O_Sheep</object>
     <object>objects\O_Shepherd</object>
     <object>objects\O_Human_Poof</object>
+    <object>objects\O_Enemy_Shepherd</object>
+    <object>objects\O_Enemy_Sheep</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\R_Room</room>
