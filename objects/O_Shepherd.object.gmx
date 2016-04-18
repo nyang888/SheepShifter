@@ -32,7 +32,7 @@ image_speed = .25
 depth = 480 - (y + sprite_height);
 
 sheepCount = 0;
-maxHp = 1;
+maxHp = 15;
 hp = maxHp;
 randomize();
 
